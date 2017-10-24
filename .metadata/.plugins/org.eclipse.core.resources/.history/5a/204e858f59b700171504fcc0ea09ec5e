@@ -1,0 +1,20 @@
+import java.net.URL;
+
+public class celebGrepper {
+	
+	class celebData {
+		URL link;
+		String name;
+		
+		celebData(URL link, String name) {
+			this.link=link;
+			this.name=name;
+		}
+	}
+	public static String grepper
+	
+	public static void main(String... args) {
+		
+	}
+
+}

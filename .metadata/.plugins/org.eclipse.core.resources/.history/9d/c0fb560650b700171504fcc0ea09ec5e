@@ -1,0 +1,9 @@
+
+public class stringSplitter {
+	public static void main(String... args) {
+		String myString = "Arpi x Somu x Neha x Santy x Debarati";
+		String[] words = myString.split("x");
+		for(String word: words)
+			System.out.println(word);
+	}
+}

@@ -1,0 +1,63 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class celebGrepper {
+	
+	class celebData {
+		URL link;
+		String name;
+		
+		celebData(URL link, String name) {
+			this.link=link;
+			this.name=name;
+		}
+	}
+	public static String grepper(String url) {
+		URL source;
+		String data = null;
+		
+		try {
+			source = new URL(url);
+			HttpURLConnection connection = (HttpURLConnection) source.openConnection();
+			connection.connect();
+			
+			InputStream is = connection.getInputStream();
+			
+			/**
+			 * Attempting to fetch an entire line at a time instead of just a character each time!
+			 */
+			StringBuilder str = new StringBuilder();
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			
+			while((data = br.readLine()) != null)
+				str.append(data);
+			
+			data=str.toString();
+					
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return data;
+	}
+	
+	public static celebData parser(String html) {
+		Pattern p = Pattern.compile("<td class=\"text-left.*img src=\"(.*?)\".*?>((\\w+\\s*)*)<\\/a>");
+		Matcher m = p.matcher(html);
+		
+		
+		
+		return null;
+	}
+	
+	public static void main(String... args) {
+		System.out.println(grepper("https://www.ecowebhosting.co.uk"));
+	}
+
+}
